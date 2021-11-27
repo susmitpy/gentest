@@ -19,7 +19,7 @@ class ArgsCheckerAndParser:
             print("Generate Unit tests")
             print("Usage: ")
             print("\tpython3 gentest.py <relative path to directory>")
-            print("\tpython3 gentest.py <file1.py> <file2.py> <file3.py>")
+            print("\tpython3 gentest.py <file1.py> <file2.py> <file3.py> ...")
             exit(1)
 
     def __dir_checker(self):
