@@ -1,0 +1,17 @@
+from unittest import TestCase
+from {{ module_import_name }} import {% for class in classes %}{{ class.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% for class in classes %}
+class {{ class.name }}Test(TestCase):
+    def setUp(self):
+        self.{{ cls_objs_names[loop.index0] }} = {{ class.name }}()
+    
+    {% for method in class.methods if not isinstance(method, func_instance)%}
+
+
+    {% endfor %}
+
+
+    def tearDown(self):
+        pass
+{% endfor %}
