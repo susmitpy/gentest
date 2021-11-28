@@ -19,7 +19,7 @@ class TestFilesGenerator:
         classes = [stmt for stmt in stmts if isinstance(stmt, ast.ClassDef)]
         obj_names_of_classes = [self.__get_cls_obj_name(i.name) for i in classes]
         module_import_name = ".".join(file_path.replace("/", ".").replace("\\", ".").split(".")[:-1])
-        gen_file = self.template.render(cls_objs_names=obj_names_of_classes, classes=classes, module_import_name=module_import_name, func_instance = ast.FunctionDef)
+        gen_file = self.template.render(cls_objs_names=obj_names_of_classes, classes=classes, module_import_name=module_import_name, func_instance = ast.FunctionDef,isinstance=isinstance)
         file_name = os.path.basename(file_path)
         with open(f"./tests/test_{file_name}", "w") as f:
             f.write(gen_file)
