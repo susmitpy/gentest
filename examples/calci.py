@@ -1,7 +1,7 @@
 import os
 
 class Calci:
-    def add(self, a, b):
+    def add(self, a, b=0):
         c = a + b
         return c
 

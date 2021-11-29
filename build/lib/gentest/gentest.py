@@ -1,5 +1,6 @@
 from .args_checker_parser import ArgsCheckerAndParser
 from .test_files_generator import TestFilesGenerator
+import os
 
 def check_and_get_files():
     args_checker_parser = ArgsCheckerAndParser()
@@ -13,6 +14,7 @@ def generate_test_files(files_list):
         test_files_generator.generate_test_file(file)
 
 def main():
+    print(os.listdir())
     files_list = check_and_get_files()
     generate_test_files(files_list)
 
