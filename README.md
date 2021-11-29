@@ -1,18 +1,18 @@
-# gentest
+# unitgen
 
-Generate unit tests
+Generate unit tests boilerplate code
 
 Example
 ```bash
 # View usage
-gentest
+unitgen
 
 # all files under src directory are processed
-gentest src
+unitgen src
 
 # Files calci.py and pay_handler.py are processed
-gentest src/calci.py src/pay_handler.py
+unitgen src/calci.py src/pay_handler.py
 ```
 
 Acknowledgements
- - Idea inspired by Krishna Sonune who liked auto-generated boilerplate code in Visual Studio for C #
+ - Idea inspired by Krishna Sonune who liked auto-generated boilerplate code for unit tests in Visual Studio for C #

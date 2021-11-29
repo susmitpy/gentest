@@ -18,10 +18,10 @@ class ArgsCheckerAndParser:
     
     def __usage(self):
         if len(argv) == 1:
-            print("Generate Unit tests")
+            print("Generate unit tests boilerplate code")
             print("Usage: ")
-            print("\tpython3 gentest.py <relative path to directory>")
-            print("\tpython3 gentest.py <file1.py> <file2.py> <file3.py> ...")
+            print("\tunitgen <relative path to directory>")
+            print("\tunitgen <file1.py> <file2.py> <file3.py> ...")
             exit(1)
 
     def __exists_checker(self):
