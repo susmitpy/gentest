@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+gentest/__init__.py
+gentest/args_checker_parser.py
+gentest/gentest.py
+gentest/template.jinja
+gentest/test_files_generator.py
+gentest.egg-info/PKG-INFO
+gentest.egg-info/SOURCES.txt
+gentest.egg-info/dependency_links.txt
+gentest.egg-info/entry_points.txt
+gentest.egg-info/not-zip-safe
+gentest.egg-info/requires.txt
+gentest.egg-info/top_level.txt

@@ -1,15 +1,42 @@
 import os
 import ast
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, BaseLoader
 
+TEMPLATE = """
+from unittest import TestCase
+from {{ module_import_name }} import {% for class in classes %}{{ class.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% for class in classes %}
+class Test{{ class.name }}(TestCase):
+    def setUp(self):
+        \""" Set up objects for each test \"""
+        {% set obj_name=cls_objs_names[loop.index0] %}
+        self.{{ cls_objs_names[loop.index0] }} = {{ class.name }}()
+    {% for method in class.body if isinstance(method, func_instance) %}
+    {% if method.name == '__init__' %}
+    def test___init__(self):
+        \""" Test initialiser \"""
+       self.obj = {{ class.name }}()
+    {% else %}
+    def test_{{ method.name }}(self):
+        {% for arg in method.args.args[1:] %}
+        {{ arg.arg }} = None
+        {%- endfor %}
+        actual_result = self.{{obj_name}}.{{method.name}}({% for arg in method.args.args[1:] %}{{ arg.arg }}{% if not loop.last %}, {% endif %}{% endfor %})
+        expected_result = None
+        self.assertEqual(actual_result, expected_result)
+    {% endif %}
+    {% endfor %}
+    def tearDown(self):
+        \""" Destroy objects after each test \"""
+{% endfor %}
+"""
 class TestFilesGenerator:
     def __init__(self):
         if not os.path.exists("tests"):
             os.mkdir("tests")
         
-        env = Environment(loader=FileSystemLoader('.'), keep_trailing_newline=False)
-        
-        self.template = env.get_template('template.jinja')
+        self.template = Environment(loader=BaseLoader(), keep_trailing_newline=False).from_string(TEMPLATE)
 
     def generate_test_file(self, file_path):
         with open(file_path, "r") as f:

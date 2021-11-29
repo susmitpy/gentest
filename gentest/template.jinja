@@ -8,6 +8,11 @@ class Test{{ class.name }}(TestCase):
         {% set obj_name=cls_objs_names[loop.index0] %}
         self.{{ cls_objs_names[loop.index0] }} = {{ class.name }}()
     {% for method in class.body if isinstance(method, func_instance) %}
+    {% if method.name == '__init__' %}
+    def test___init__(self):
+        """ Test initialiser """
+        self.obj = {{ class.name }}()
+    {% else %}
     def test_{{ method.name }}(self):
         {% for arg in method.args.args[1:] %}
         {{ arg.arg }} = None
@@ -15,6 +20,7 @@ class Test{{ class.name }}(TestCase):
         actual_result = self.{{obj_name}}.{{method.name}}({% for arg in method.args.args[1:] %}{{ arg.arg }}{% if not loop.last %}, {% endif %}{% endfor %})
         expected_result = None
         self.assertEqual(actual_result, expected_result)
+    {% endif %}
     {% endfor %}
     def tearDown(self):
         """ Destroy objects after each test """

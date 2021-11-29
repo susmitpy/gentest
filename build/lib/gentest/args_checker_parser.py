@@ -5,9 +5,11 @@ class ArgsCheckerAndParser:
     def get_files_list(self):
         if len(argv) > 1:
             if os.path.isdir(argv[1]):
-                return [os.path.join(argv[1],i) for i in  os.listdir(argv[1])]
+                files = [os.path.join(argv[1],i) for i in  os.listdir(argv[1])]
             else:
-                return argv[1:]
+                files =  argv[1:]
+
+            return [file for file in files if file.lower().endswith(".py")]
 
     def inital_checker(self):
         self.__usage()
