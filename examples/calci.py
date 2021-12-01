@@ -1,6 +1,9 @@
-import os
+import math
 
 class Calci:
+    def __init__(self):
+        print("Calci class created")
+
     def add(self, a, b=0):
         c = a + b
         return c

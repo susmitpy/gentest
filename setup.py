@@ -9,7 +9,7 @@ setup(
     name="unitgen",
     packages=["unitgen"],
     package_data={"unitgen": ["template.jinja"]},
-    version="1.1",
+    version="1.2",
     license="GPL",
     description="Generate unit tests boilerplate code",
     long_description=long_description,
@@ -17,7 +17,7 @@ setup(
     author="Susmit Rajeev Vengurlekar",
     author_email="susmit.py@gmail.com",
     url="https://github.com/susmitpy/unitgen",
-    download_url="https://github.com/susmitpy/unitgen/archive/refs/tags/v_1.1.tar.gz",
+    download_url="https://github.com/susmitpy/unitgen/archive/refs/tags/v_1.2.tar.gz",
     keywords=["generate unit tests", "generate tests", "tests generator", "boilerplate generator"],
     install_requires=["jinja2"],
     classifiers=[
